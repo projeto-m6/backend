@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  name          String
+  email         String         @unique
+  password      String
+  cpf           String
+  cell          String
+  bithdate      String
+  description   String
+  is_buyer      Boolean        @default(true)
+  address       Address?
+  announcements Announcement[]
+  comments      Comment[]
+}
+
+model Address {
+  id         String  @id @default(uuid())
+  cep        String
+  state      String
+  city       String
+  road       String
+  number     String
+  complement String?
+  user_id    String  @unique
+  user       User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Announcement {
+  id           String               @id @default(uuid())
+  is_sale      Boolean              @default(true)
+  title        String
+  year         String
+  mileage      String
+  price        Decimal              @db.Decimal(12, 2)
+  description  String
+  is_car       Boolean              @default(true)
+  is_published Boolean              @default(true)
+  user_id      String
+  user         User                 @relation(fields: [user_id], references: [id])
+  images       AutoVehiclesImages[]
+  comments     Comment[]
+}
+
+model AutoVehiclesImages {
+  id              String       @id @default(uuid())
+  image_url       String
+  announcement_id String
+  announcement    Announcement @relation(fields: [announcement_id], references: [id], onDelete: Cascade)
+}
+
+model Comment {
+  id              String @id @default(uuid())
+  comment         String
+  user_id         String
+  announcement_id String
+
+  user         User         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  announcement Announcement @relation(fields: [announcement_id], references: [id], onDelete: Cascade)
+}
