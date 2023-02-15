@@ -17,7 +17,7 @@ model User {
   password      String
   cpf           String
   cell          String
-  bithdate      String
+  birthdate     String
   description   String
   is_buyer      Boolean        @default(true)
   address       Address?
