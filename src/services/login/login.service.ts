@@ -9,6 +9,9 @@ export const loginService = async ({ email, password }: ILoginRequest) => {
     where: {
       email,
     },
+    include: {
+      announcements: true,
+    },
   });
 
   if (!account) {
@@ -29,5 +32,7 @@ export const loginService = async ({ email, password }: ILoginRequest) => {
     }
   );
 
-  return token;
+  const { password: pwd, ...rest } = account;
+
+  return { token, rest };
 };
