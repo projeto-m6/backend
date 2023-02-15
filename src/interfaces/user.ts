@@ -18,3 +18,15 @@ export interface ICreateUserRequest {
   is_buyer: boolean;
   address: Address;
 }
+
+export interface IUserResponse {
+  id: string;
+  name: string;
+  email: string;
+  cpf: string;
+  cell: string;
+  birthdate: string;
+  description: string;
+  is_buyer: boolean;
+  address: Address;
+}

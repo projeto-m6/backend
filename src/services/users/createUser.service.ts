@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
-import { ICreateUserRequest } from '../../interfaces/user';
-import { prisma } from '../../prisma';
+import bcrypt from "bcrypt";
+import { ICreateUserRequest } from "../../interfaces/user";
+import { prisma } from "../../prisma";
 
 export const createUserService = async (data: ICreateUserRequest) => {
   const passwordHash = bcrypt.hashSync(data.password, 10);
