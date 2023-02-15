@@ -19,5 +19,7 @@ export const createUserService = async (data: ICreateUserRequest) => {
     },
   });
 
-  return user;
+  const { password: pwd, ...rest } = user;
+
+  return rest;
 };
