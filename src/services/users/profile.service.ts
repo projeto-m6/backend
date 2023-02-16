@@ -6,7 +6,7 @@ export const profileService = async (id: string) => {
       id,
     },
     include: {
-      address: true,
+      announcements: true,
     },
   });
 
