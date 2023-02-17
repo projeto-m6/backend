@@ -11,6 +11,7 @@ export const loginService = async ({ email, password }: ILoginRequest) => {
     },
     include: {
       announcements: true,
+      address: true,
     },
   });
 

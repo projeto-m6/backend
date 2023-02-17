@@ -7,8 +7,11 @@ export const profileService = async (id: string) => {
     },
     include: {
       announcements: true,
+      address: true,
     },
   });
 
-  return user;
+  const { password, ...rest } = user!;
+
+  return rest;
 };
