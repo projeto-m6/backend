@@ -1,7 +1,8 @@
-import { prisma } from "../../prisma";
+import ErrorHttp from '../../errors/errorHttp';
+import { prisma } from '../../prisma';
 
 export const readAnnouncementIdService = async (id: string) => {
-  const announcements = await prisma.announcement.findMany({
+  const announcement = await prisma.announcement.findUnique({
     where: {
       id: id,
     },
@@ -10,5 +11,9 @@ export const readAnnouncementIdService = async (id: string) => {
     },
   });
 
-  return announcements;
+  if (!announcement) {
+    throw new ErrorHttp('Announcement not found!', 404);
+  }
+
+  return announcement;
 };
