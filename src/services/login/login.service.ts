@@ -10,7 +10,17 @@ export const loginService = async ({ email, password }: ILoginRequest) => {
       email,
     },
     include: {
-      announcements: true,
+      announcements: {
+        include: {
+          user: true,
+          images: true,
+          comments: {
+            include: {
+              user: true,
+            },
+          },
+        },
+      },
       address: true,
     },
   });
@@ -29,7 +39,7 @@ export const loginService = async ({ email, password }: ILoginRequest) => {
     { id: account.id, is_buyer: account.is_buyer },
     process.env.SECRET_KEY as string,
     {
-      expiresIn: '15m',
+      expiresIn: '1d',
     }
   );
 
