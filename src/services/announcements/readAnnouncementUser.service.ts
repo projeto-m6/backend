@@ -1,4 +1,4 @@
-import { prisma } from "../../prisma";
+import { prisma } from '../../prisma';
 
 export const readAnnouncementUserService = async (id: string) => {
   const announcements = await prisma.announcement.findMany({
@@ -6,6 +6,7 @@ export const readAnnouncementUserService = async (id: string) => {
       user_id: id,
     },
     include: {
+      user: true,
       images: true,
     },
   });
