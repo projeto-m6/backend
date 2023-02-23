@@ -11,6 +11,7 @@ export const loginService = async ({ email, password }: ILoginRequest) => {
     },
     include: {
       announcements: {
+        orderBy: { created_at: 'asc' },
         include: {
           user: true,
           images: true,

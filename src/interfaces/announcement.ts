@@ -1,4 +1,4 @@
-import { Decimal } from "@prisma/client/runtime";
+import { Decimal } from '@prisma/client/runtime';
 
 export interface IAnnouncementRequest {
   is_sale: boolean;
@@ -29,6 +29,6 @@ export interface IAnnouncementUpdate {
 }
 
 export interface IImageUpdate {
-  id?: string;
-  image_url?: string;
+  id: string;
+  image_url: string;
 }

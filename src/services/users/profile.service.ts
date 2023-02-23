@@ -7,6 +7,7 @@ export const profileService = async (id: string) => {
     },
     include: {
       announcements: {
+        orderBy: { created_at: 'asc' },
         include: {
           user: true,
           images: true,
