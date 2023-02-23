@@ -1,10 +1,7 @@
-import { IAnnouncementRequest } from "../../interfaces/announcement";
-import { prisma } from "../../prisma";
+import { IAnnouncementRequest } from '../../interfaces/announcement';
+import { prisma } from '../../prisma';
 
-export const createAnnouncementService = async (
-  data: IAnnouncementRequest,
-  id: string
-) => {
+export const createAnnouncementService = async (data: IAnnouncementRequest, id: string) => {
   const { images, ...announcementInfo } = data;
 
   const announcement = await prisma.announcement.create({
@@ -19,6 +16,7 @@ export const createAnnouncementService = async (
     },
     include: {
       images: true,
+      user: true,
     },
   });
 
