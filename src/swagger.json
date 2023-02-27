@@ -102,6 +102,26 @@
             "description": "Internal server error!"
           }
         }
+      },
+      "get": {
+        "summary": "Listar todos os anúncios",
+        "description": "Essa rota será responsável por listar todos os anúncios",
+        "tags": ["Anúncios"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Announcements"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/announcements/{id}": {
@@ -109,7 +129,6 @@
         "summary": "Encontra um anuncio pelo id",
         "description": "retorna as informações do anúncio pelo id",
         "tags": ["Anúncios"],
-        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
