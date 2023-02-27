@@ -7,7 +7,11 @@ export const readAnnouncementIdService = async (id: string) => {
       id: id,
     },
     include: {
-      comments: true,
+      comments: {
+        include: {
+          user: true,
+        },
+      },
       images: true,
       user: true,
     },
