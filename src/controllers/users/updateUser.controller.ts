@@ -5,6 +5,6 @@ export const updateUserController = async (req: Request, res: Response) =>{
 
     const data = req.body
     const {id} = req.params
-    const updatedUser = updatedUserService(data,id)
+    const updatedUser = await updatedUserService(data,id)
     return res.status(201).json(updatedUser)
 }
