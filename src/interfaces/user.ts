@@ -19,6 +19,15 @@ export interface ICreateUserRequest {
   address: Address;
 }
 
+export interface IUpdateUserRequest {
+  name?: string;
+  email?: string;
+  cpf?: string;
+  cell?: string;
+  birthdate?: string;
+  description?: string;
+}
+
 export interface IUserResponse {
   id: string;
   name: string;
