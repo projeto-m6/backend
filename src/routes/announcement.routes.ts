@@ -5,6 +5,7 @@ import { readAnnouncementController } from '../controllers/announcements/readAnn
 import { readAnnouncementIdController } from '../controllers/announcements/readAnnouncementId.controller';
 import { readAnnouncementUserController } from '../controllers/announcements/readAnnouncementUser.controller';
 import { updateAnnouncementController } from '../controllers/announcements/updateAnnouncement.controller';
+import { createCommentController } from '../controllers/comments/createComment.controller';
 import isOwnerResource from '../middlewares/isOwnerResource.middleware';
 import verifyAuthTokenMiddleware from '../middlewares/verifyAuthToken.middleware';
 import { prisma } from '../prisma';
@@ -27,6 +28,8 @@ export const announcementRoutes = () => {
     isOwnerResource(prisma.announcement),
     deleteAnnouncementController
   );
+
+  routes.post('/:id/comment', verifyAuthTokenMiddleware, createCommentController);
 
   return routes;
 };
