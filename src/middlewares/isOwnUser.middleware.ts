@@ -6,7 +6,7 @@ export const isOwnUserMiddleware = (req: Request, res: Response, next: NextFunct
     const userId = req.user.id
 
     if(id === userId){
-        next()
+       return next()
     }
 
     return res.status(403).json({ message: "You cannot change this user!" })
