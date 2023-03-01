@@ -11,7 +11,6 @@ export const requestResetPasswordService = async (email: string) => {
       email,
     },
   });
-  console.log(account);
 
   if (!account) {
     throw new ErrorHttp("Email not found", 404);
@@ -25,7 +24,7 @@ export const requestResetPasswordService = async (email: string) => {
     }
   );
 
-  const link = `https://localhost:3000/users/reset-password?token=${token}`;
+  const link = `http://localhost:5173/reset-password`;
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.email",
@@ -40,8 +39,13 @@ export const requestResetPasswordService = async (email: string) => {
     from: "motorsshop4@gmail.com",
     to: email,
     subject: "Redefinir senha",
-    text: `Acesse esse site para redefinir sua senha: ${link}`,
-    html: `Clique <a href="${link}">aqui</a> para atualizar sua senha.`,
+    text: `Copie a o token: ${token} \nAcesse esse site para redefinir sua senha: ${link}`,
+    html: [
+      `<div style="font-family: sans-serif; font-size: 16px; color: #111;">`,
+      `<p><strong>Copie o token:</strong> ${token}</p>`,
+      `<p><strong>Clique aqui para redefinir sua senha:</strong> ${link}</p>`,
+      `</div>`,
+    ].join("\n"),
   };
 
   await transporter.sendMail(mailOptions, function (error: any, info: any) {
