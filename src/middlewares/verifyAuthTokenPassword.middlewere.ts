@@ -6,14 +6,14 @@ const verifyAuthTokenPasswordMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  const auth = req.query.token;
+  const token = req.query.token;
 
-  if (!auth) {
+  if (!token) {
     return res.status(401).json({ message: "Missing authorization headers" });
   }
 
   jwt.verify(
-    String(auth),
+    String(token),
     process.env.SECRET_KEY as string,
     (error: any, decoded: any) => {
       if (error) {
