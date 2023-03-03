@@ -9,5 +9,5 @@ export const requestResetPasswordController = async (
 
   const result = await requestResetPasswordService(email);
 
-  return res.json({ link: result, message: "email enviado" });
+  return res.json({ token: result, message: "email enviado" });
 };

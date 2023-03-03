@@ -24,7 +24,7 @@ export const requestResetPasswordService = async (email: string) => {
     }
   );
 
-  const link = `http://localhost:5173/reset-password`;
+  const link = `http://localhost:5173/reset-password?token=${token}`;
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.email",
@@ -42,7 +42,6 @@ export const requestResetPasswordService = async (email: string) => {
     text: `Copie a o token: ${token} \nAcesse esse site para redefinir sua senha: ${link}`,
     html: [
       `<div style="font-family: sans-serif; font-size: 16px; color: #111;">`,
-      `<p><strong>Copie o token:</strong> ${token}</p>`,
       `<p><strong>Clique aqui para redefinir sua senha:</strong> ${link}</p>`,
       `</div>`,
     ].join("\n"),
@@ -56,5 +55,5 @@ export const requestResetPasswordService = async (email: string) => {
     }
   });
 
-  return link;
+  return token;
 };
