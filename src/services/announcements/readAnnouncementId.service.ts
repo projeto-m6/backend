@@ -8,6 +8,9 @@ export const readAnnouncementIdService = async (id: string) => {
     },
     include: {
       comments: {
+        orderBy: {
+          created_at: 'desc',
+        },
         include: {
           user: true,
         },
