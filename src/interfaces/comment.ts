@@ -3,3 +3,8 @@ export interface ICommentRequest {
   userId: string;
   announcementId: string;
 }
+
+export interface IUpdateCommentRequest {
+  comment: string;
+  commentId: string;
+}
