@@ -7,6 +7,8 @@ interface Address {
   complement: string;
 }
 
+export type IUpdateAddress = Partial<Address>;
+
 export interface ICreateUserRequest {
   name: string;
   email: string;
